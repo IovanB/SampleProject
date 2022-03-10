@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUp", "SignUp\SignUp.csproj", "{737EE9D3-527B-4A8C-9E8F-3FA9F2214831}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignUp", "SignUp\SignUp.csproj", "{737EE9D3-527B-4A8C-9E8F-3FA9F2214831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUp.Domain", "SignUp.Domain\SignUp.Domain.csproj", "{62176E35-5240-45B9-8F1C-97C855AF049D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignUp.Domain", "SignUp.Domain\SignUp.Domain.csproj", "{62176E35-5240-45B9-8F1C-97C855AF049D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUp.Application", "SignUp.Application\SignUp.Application.csproj", "{85B3280D-2049-4FC7-B7E1-80DD4B1EA950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignUp.Application", "SignUp.Application\SignUp.Application.csproj", "{85B3280D-2049-4FC7-B7E1-80DD4B1EA950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUp.Infrastructure", "SignUp.Infrastructure\SignUp.Infrastructure.csproj", "{9840852B-A215-4ECB-844A-4A4B0BCE894E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignUp.Infrastructure", "SignUp.Infrastructure\SignUp.Infrastructure.csproj", "{9840852B-A215-4ECB-844A-4A4B0BCE894E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUpForCompany", "SignUpForCompany\SignUpForCompany.csproj", "{F18F56B0-2E03-47AB-B1F6-2B75F5CC2A82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingUp.Tests", "SingUp.Tests\SingUp.Tests.csproj", "{53733102-17A3-43FD-A0AB-8746C4550FBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingUp.Tests", "SingUp.Tests\SingUp.Tests.csproj", "{53733102-17A3-43FD-A0AB-8746C4550FBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignUpForCompany", "SignUpForCompany\SignUpForCompany.csproj", "{D3AA7028-AF67-4B02-B70F-CF5370212B97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,14 @@ Global
 		{9840852B-A215-4ECB-844A-4A4B0BCE894E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9840852B-A215-4ECB-844A-4A4B0BCE894E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9840852B-A215-4ECB-844A-4A4B0BCE894E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F18F56B0-2E03-47AB-B1F6-2B75F5CC2A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F18F56B0-2E03-47AB-B1F6-2B75F5CC2A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F18F56B0-2E03-47AB-B1F6-2B75F5CC2A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F18F56B0-2E03-47AB-B1F6-2B75F5CC2A82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{53733102-17A3-43FD-A0AB-8746C4550FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53733102-17A3-43FD-A0AB-8746C4550FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53733102-17A3-43FD-A0AB-8746C4550FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53733102-17A3-43FD-A0AB-8746C4550FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3AA7028-AF67-4B02-B70F-CF5370212B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3AA7028-AF67-4B02-B70F-CF5370212B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3AA7028-AF67-4B02-B70F-CF5370212B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3AA7028-AF67-4B02-B70F-CF5370212B97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

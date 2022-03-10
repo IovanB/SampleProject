@@ -20,13 +20,12 @@ namespace SignUp.Application.UseCases
 
             try
             {
-                signUpRepository.Add(employee);
+                signUpRepository.Add(employee); 
             }
             catch (Exception ex)
             {
                 throw null;
             }
-
         }
 
         private bool IsEmployeeValid(Employee employee)
