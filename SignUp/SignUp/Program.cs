@@ -12,9 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ISignUpRepository, SignUpRepository>();
-builder.Services.AddScoped<ISignUpForCompany, SignUpForCompany>();
 builder.Services.AddScoped<ISignUpUser, SignUpUser>();
-builder.Services.AddScoped<ICompanySignUp, CompanySignUp>();
 
 var app = builder.Build();
 

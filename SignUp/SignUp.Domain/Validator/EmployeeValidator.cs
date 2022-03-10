@@ -29,6 +29,10 @@ namespace SignUp.Domain.Validator
                 .IsInEnum()
                 .NotEmpty()
                 .NotNull();
+
+            RuleFor(x => x.EntryDate)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull();
         }
     }
 }

@@ -9,7 +9,6 @@ namespace SignUp.Domain.Entities
         public Occupation Occupation { get; set; }    
         public DateTime? EntryDate { get; set; }
         public bool CurrentWorking { get; set; }
-        public string EmployeeIdentification { get; set; }
 
         public Employee(Guid id, string name, int age, Occupation occupation, DateTime? entryDate)
         {

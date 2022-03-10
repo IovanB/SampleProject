@@ -16,15 +16,16 @@ namespace SignUp.Application.UseCases
         {
             //checking whether the user is valid or not
 
-            IsEmployeeValid(employee);
-
             try
             {
+                if (!IsEmployeeValid(employee))
+                    throw new InvalidOperationException("You shall not pass!");
+
                 signUpRepository.Add(employee); 
             }
             catch (Exception ex)
             {
-                throw null;
+                throw ex;
             }
         }
 

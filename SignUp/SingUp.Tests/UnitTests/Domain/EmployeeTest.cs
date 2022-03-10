@@ -1,4 +1,5 @@
-﻿using SignUp.Domain.Entities;
+﻿using FluentAssertions;
+using SignUp.Domain.Entities;
 using System;
 using Xunit;
 
@@ -10,9 +11,10 @@ namespace SingUp.Tests.UnitTests.Domain
         [Fact]
         public void IsEmployeeValid()
         {
-            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 22, Occupation.Support, null);
+            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 22, Occupation.Support, DateTime.UtcNow);
 
             Assert.True(employee.IsValid);
+            employee.IsValid.Should().BeTrue();
         }
 
         [Theory]
@@ -21,18 +23,32 @@ namespace SingUp.Tests.UnitTests.Domain
         [InlineData("Employee Three", 17)]
         public void EmployeeCannotBeUnderAge(string name, int age)
         {
-            var employee = new Employee(Guid.NewGuid(), name, age, Occupation.Support, null);
+            var employee = new Employee(Guid.NewGuid(), name, age, Occupation.Support, DateTime.UtcNow);
 
             Assert.False(employee.IsValid);
         }
 
-        [Fact]
-        public void GuidCannotBeInvalid()
+        [Theory]
+        [InlineData(Occupation.Support)]
+        [InlineData(Occupation.Student)]
+        [InlineData(Occupation.Manager)]
+        public void EmployeeIsNotDeveloper(Occupation occupation)
         {
-            var employee = new Employee(new Guid(), "Employee One", 19, Occupation.Support, null);
+            var employee = new Employee(Guid.NewGuid(), "Employee", 19, occupation, DateTime.UtcNow);
 
-             
+            employee.Occupation.Should().NotBe(Occupation.Developer);
         }
+
+        [Fact]
+        public void EntryDateCannotBeNull()
+        {
+            var employee = new Employee(Guid.NewGuid(), "Employee One", 19, Occupation.Support, null);
+
+            employee.IsValid.Should().BeFalse();
+
+
+        }
+
 
     }
 }

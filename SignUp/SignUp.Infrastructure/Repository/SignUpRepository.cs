@@ -5,11 +5,13 @@ namespace SignUp.Infrastructure.Repository
 {
     public class SignUpRepository : ISignUpRepository
     {
-        public void Add(Employee employee)
+        public bool Add(Employee employee)
         {
             using var context = new Context();
             context.Add(employee);
             context.SaveChanges();
+
+            return true;
         }
 
         public List<Employee> GetAll()
@@ -18,11 +20,13 @@ namespace SignUp.Infrastructure.Repository
             return context.Emplooyees.ToList();
         }
 
-        public void Remove(Employee employee)
+        public bool Remove(Employee employee)
         {
             using var context = new Context();
             context.Remove(employee);
             context.SaveChanges();
+
+            return true;
         }
     }
 }

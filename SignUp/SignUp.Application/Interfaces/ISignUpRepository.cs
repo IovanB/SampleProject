@@ -4,8 +4,8 @@ namespace SignUp.Application.Interfaces
 {
     public interface ISignUpRepository
     {
-        void Add(Employee employee);    
-        void Remove(Employee employee);    
+        bool Add(Employee employee);    
+        bool Remove(Employee employee);    
         List<Employee> GetAll();    
     }
 }
