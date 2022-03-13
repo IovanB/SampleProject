@@ -12,21 +12,17 @@ namespace SignUp.Application.UseCases
             this.signUpRepository = signUpRepository;
         }
 
-        public void Register(Employee employee)
+        public string Register(Employee employee)
         {
             //checking whether the user is valid or not
 
-            try
-            {
                 if (!IsEmployeeValid(employee))
-                    throw new InvalidOperationException("You shall not pass!");
+                    return "Not allowed";
 
-                signUpRepository.Add(employee); 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                signUpRepository.Add(employee);
+
+            return "User Added";
+
         }
 
         private bool IsEmployeeValid(Employee employee)

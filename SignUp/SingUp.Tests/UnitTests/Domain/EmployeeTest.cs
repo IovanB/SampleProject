@@ -13,7 +13,9 @@ namespace SingUp.Tests.UnitTests.Domain
         {
             var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 22, Occupation.Support, DateTime.UtcNow);
 
+            //You can do the validation in two different forms
             Assert.True(employee.IsValid);
+
             employee.IsValid.Should().BeTrue();
         }
 
@@ -21,7 +23,7 @@ namespace SingUp.Tests.UnitTests.Domain
         [InlineData("Employee One",12)]
         [InlineData("Employee Two", 14)]
         [InlineData("Employee Three", 17)]
-        public void EmployeeCannotBeUnderAge(string name, int age)
+        public void EmployeeShouldBeUnderAge(string name, int age)
         {
             var employee = new Employee(Guid.NewGuid(), name, age, Occupation.Support, DateTime.UtcNow);
 
@@ -40,6 +42,7 @@ namespace SingUp.Tests.UnitTests.Domain
         }
 
         [Fact]
+        [Trait("Category", "Employee")]
         public void EntryDateCannotBeNull()
         {
             var employee = new Employee(Guid.NewGuid(), "Employee One", 19, Occupation.Support, null);

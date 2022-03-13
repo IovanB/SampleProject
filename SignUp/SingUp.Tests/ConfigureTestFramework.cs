@@ -34,6 +34,7 @@ namespace SingUp.Tests
         protected override void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<SignUpRepository>().As<ISignUpRepository>().AsImplementedInterfaces().AsSelf();
+            builder.RegisterType<SignUpUser>().As<ISignUpUser>().AsImplementedInterfaces().AsSelf();
         }
     }
 }

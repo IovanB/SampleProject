@@ -1,49 +1,57 @@
-﻿using FluentAssertions;
+﻿using Autofac;
+using FluentAssertions;
 using Moq;
 using SignUp.Application.Interfaces;
 using SignUp.Application.UseCases;
 using SignUp.Domain.Entities;
 using System;
 using Xunit;
+using Xunit.Frameworks.Autofac;
 
 namespace SingUp.Tests.UnitTests.Application
 {
+    //public class Fixture
+    //{
+    //    public IContainer Container { get; set; }
+
+    //    public Fixture()
+    //    {
+    //        var builder = new ContainerBuilder();
+
+    //        var signUpUseCase = new Mock<ISignUpUser>();
+    //        builder.RegisterInstance(signUpUseCase).As<Mock<ISignUpUser>>();
+
+    //        Container = builder.Build();
+    //    }
+    //}
+
+    [UseAutofacTestFramework]
     public class SignUpUserTest
     {
-        //var category = new Category("Nova Category");
-        //var categoryRepositoryMock = new Mock<ICategoryWriteOnlyUseCase>();
-        //var categoryAddUseCase = new AddCategoryUseCase(categoryRepositoryMock.Object);
-        //categoryAddUseCase.Add(category);
-        //    categoryRepositoryMock.Verify(x => x.Add(It.IsAny<Category>()));
+        private readonly ISignUpUser signUpUser;
+
+        public SignUpUserTest(ISignUpUser signUpUser)
+        {
+            this.signUpUser = signUpUser;
+        }
 
         [Fact]
         public void RegisterUserSuccess()
         {
-            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 22, Occupation.Support, DateTime.UtcNow);
+            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 18, Occupation.Support, DateTime.UtcNow);
+            var response = signUpUser.Register(employee);
 
-            var employeeMock = new Mock<ISignUpRepository>();
-
-            var registerUserUseCase = new SignUpUser(employeeMock.Object);
-
-            registerUserUseCase.Register(employee);
-
-            employeeMock.Verify(x => x.Add(It.IsAny<Employee>()));
+            response.Should().Contain("User Added");
 
         }
 
         [Fact]
         public void CannotRegisterUserUnderAge()
         {
-            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 17, Occupation.Support, DateTime.UtcNow);
+            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 16, Occupation.Developer, DateTime.UtcNow);
+            var response = signUpUser.Register(employee);
 
-            var employeeMock = new Mock<ISignUpRepository>();
-
-            var registerUserUseCase = new SignUpUser(employeeMock.Object);
-
-            registerUserUseCase.Register(employee);
-
-            registerUserUseCase.Should().BeOfType<InvalidOperationException>();
-
+            response.Should().Contain("Not allowed");
         }
     }
 }
