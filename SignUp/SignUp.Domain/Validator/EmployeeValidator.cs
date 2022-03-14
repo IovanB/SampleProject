@@ -33,6 +33,10 @@ namespace SignUp.Domain.Validator
             RuleFor(x => x.EntryDate)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull();
+
+            RuleFor(x => x.Email)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .EmailAddress();
         }
     }
 }

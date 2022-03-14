@@ -1,7 +1,11 @@
 ﻿using Autofac;
 using SignUp.Application.Interfaces;
-using SignUp.Application.UseCases;
+using SignUp.Application.UseCases.GetEmail;
+using SignUp.Application.UseCases.SignUpUser.SignUpUsers;
+using SignUp.Application.UseCases.SignUpUsers;
+using SignUp.Infrastructure;
 using SignUp.Infrastructure.Repository;
+using SignUp.Infrastructure.Service;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Frameworks.Autofac;
@@ -18,23 +22,15 @@ namespace SingUp.Tests
 
         }
 
-
-        //public ConfigureTestFramework()
-        //{
-        //    var builder = new ContainerBuilder();
-           
-        //    builder.RegisterInstance(new SignUpRepository()).As<ISignUpRepository>();
-        //    //builder.RegisterInstance(new SignUpUser()).As<ISignUpUser>();
-        //    //builder.RegisterServiceMiddleware<ISignUpUser, SignUpUser>();
-
-        //    Container = builder.Build();
-        //}
-
-
         protected override void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<SignUpRepository>().As<ISignUpRepository>().AsImplementedInterfaces().AsSelf();
             builder.RegisterType<SignUpUser>().As<ISignUpUser>().AsImplementedInterfaces().AsSelf();
+            builder.RegisterType<GetEmployeeEmail>().As<IGetEmployeeEmail>().AsImplementedInterfaces().AsSelf();
+            builder.RegisterType<GetEmailUseCase>().As<IGetEmailUseCase>().AsImplementedInterfaces().AsSelf();
+
+            var context = new Context();
+            context.Database.EnsureDeleted();
         }
     }
 }

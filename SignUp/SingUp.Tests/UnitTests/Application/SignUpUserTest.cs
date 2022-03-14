@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using FluentAssertions;
 using Moq;
-using SignUp.Application.Interfaces;
 using SignUp.Application.UseCases;
+using SignUp.Application.UseCases.SignUpUser.SignUpUsers;
 using SignUp.Domain.Entities;
 using System;
 using Xunit;
@@ -36,9 +36,10 @@ namespace SingUp.Tests.UnitTests.Application
         }
 
         [Fact]
+        [Trait("UseCase", "SignUpUser")]
         public void RegisterUserSuccess()
         {
-            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 18, Occupation.Support, DateTime.UtcNow);
+            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 18, Occupation.Support, DateTime.UtcNow, "");
             var response = signUpUser.Register(employee);
 
             response.Should().Contain("User Added");
@@ -46,9 +47,10 @@ namespace SingUp.Tests.UnitTests.Application
         }
 
         [Fact]
+        [Trait("UseCase", "SignUpUser")]
         public void CannotRegisterUserUnderAge()
         {
-            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 16, Occupation.Developer, DateTime.UtcNow);
+            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 16, Occupation.Developer, DateTime.UtcNow, "");
             var response = signUpUser.Register(employee);
 
             response.Should().Contain("Not allowed");
