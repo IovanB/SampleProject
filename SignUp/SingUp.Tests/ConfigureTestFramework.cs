@@ -17,7 +17,7 @@ namespace SingUp.Tests
     {
 
         public ConfigureTestFramework(IMessageSink diagnosticMessageSink)
-  : base(diagnosticMessageSink)
+        : base(diagnosticMessageSink)
         {
 
         }
@@ -29,8 +29,7 @@ namespace SingUp.Tests
             builder.RegisterType<GetEmployeeEmail>().As<IGetEmployeeEmail>().AsImplementedInterfaces().AsSelf();
             builder.RegisterType<GetEmailUseCase>().As<IGetEmailUseCase>().AsImplementedInterfaces().AsSelf();
 
-            var context = new Context();
-            context.Database.EnsureDeleted();
+            Context context = new Context();
         }
     }
 }

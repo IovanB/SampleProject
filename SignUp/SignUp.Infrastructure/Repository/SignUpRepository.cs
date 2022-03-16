@@ -19,14 +19,6 @@ namespace SignUp.Infrastructure.Repository
             using var context = new Context();
             return context.Emplooyees.ToList();
         }
-
-        public bool Remove(Employee employee)
-        {
-            using var context = new Context();
-            context.Remove(employee);
-            context.SaveChanges();
-
-            return true;
-        }
+     
     }
 }

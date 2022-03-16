@@ -1,6 +1,5 @@
 using SignUp.Application.Interfaces;
 using SignUp.Application.UseCases.GetEmail;
-using SignUp.Application.UseCases.SignUpUser;
 using SignUp.Application.UseCases.SignUpUser.SignUpUsers;
 using SignUp.Application.UseCases.SignUpUsers;
 using SignUp.Infrastructure.Repository;

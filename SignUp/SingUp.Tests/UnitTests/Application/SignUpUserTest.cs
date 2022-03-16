@@ -10,21 +10,6 @@ using Xunit.Frameworks.Autofac;
 
 namespace SingUp.Tests.UnitTests.Application
 {
-    //public class Fixture
-    //{
-    //    public IContainer Container { get; set; }
-
-    //    public Fixture()
-    //    {
-    //        var builder = new ContainerBuilder();
-
-    //        var signUpUseCase = new Mock<ISignUpUser>();
-    //        builder.RegisterInstance(signUpUseCase).As<Mock<ISignUpUser>>();
-
-    //        Container = builder.Build();
-    //    }
-    //}
-
     [UseAutofacTestFramework]
     public class SignUpUserTest
     {
@@ -33,13 +18,14 @@ namespace SingUp.Tests.UnitTests.Application
         public SignUpUserTest(ISignUpUser signUpUser)
         {
             this.signUpUser = signUpUser;
+            Utils.CleanDatabase();
         }
 
         [Fact]
         [Trait("UseCase", "SignUpUser")]
         public void RegisterUserSuccess()
         {
-            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 18, Occupation.Support, DateTime.UtcNow, "");
+            var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 18, Occupation.Support, DateTime.UtcNow, String.Empty);
             var response = signUpUser.Register(employee);
 
             response.Should().Contain("User Added");
@@ -53,7 +39,7 @@ namespace SingUp.Tests.UnitTests.Application
             var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 16, Occupation.Developer, DateTime.UtcNow, "");
             var response = signUpUser.Register(employee);
 
-            response.Should().Contain("Not allowed");
+            response.Should().Contain("Employee should not be under 18");
         }
     }
 }

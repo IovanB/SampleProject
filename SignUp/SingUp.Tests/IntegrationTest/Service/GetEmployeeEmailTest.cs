@@ -20,10 +20,11 @@ namespace SingUp.Tests.IntegrationTest.Service
 
             var getEmail = new Mock<IGetEmployeeEmail>();
 
-
             getEmail.Setup(x => x.GetEmail(It.IsAny<Guid>())).Returns("emplone@unittest.com");
 
             builder.RegisterInstance(getEmail.Object).As<IGetEmployeeEmail>();
+
+            builder.RegisterType<GetEmailUseCase>().As<IGetEmailUseCase>().AsImplementedInterfaces().AsSelf();
 
             Container = builder.Build();
         }
@@ -32,13 +33,14 @@ namespace SingUp.Tests.IntegrationTest.Service
     [UseAutofacTestFramework]
     public class GetEmployeeEmailTest : IClassFixture<Fixture>
     {
-        private readonly Fixture fixture;
+
+        private readonly IGetEmployeeEmail getEmployeeEmail;
         private readonly IGetEmailUseCase getEmailUseCase;
 
-        public GetEmployeeEmailTest(Fixture fixture, IGetEmailUseCase getEmailUseCase)
+        public GetEmployeeEmailTest(Fixture fixture)
         {
-            this.fixture = fixture;
-            this.getEmailUseCase = getEmailUseCase;
+            getEmployeeEmail = fixture?.Container.Resolve<IGetEmployeeEmail>();
+            getEmailUseCase = fixture?.Container.Resolve<IGetEmailUseCase>();
         }
 
 
@@ -47,10 +49,10 @@ namespace SingUp.Tests.IntegrationTest.Service
         {
 
             var employee = new Employee(Guid.NewGuid(), "EmployeeOne", 22, Occupation.Support, DateTime.UtcNow, "");
-            
-            var result = getEmailUseCase.GetEmail(employee);
 
-            result.Should().Equals("emplone@unittest.com");
+            var result = getEmailUseCase.GetEmployeeEmail(employee);
+
+            result.Should().Contain("emplone@unittest.com");
 
         }
     }

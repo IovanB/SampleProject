@@ -12,7 +12,7 @@ namespace SignUp.Application.UseCases.GetEmail
             this.getEmployeeEmail = getEmployeeEmail;
         }
 
-        public string GetEmail(Employee employee)
+        public string GetEmployeeEmail(Employee employee)
         {
             var email = getEmployeeEmail.GetEmail(employee.Id);
 

@@ -2,9 +2,8 @@
 
 namespace SignUp.Domain.Entities
 {
-    public class Employee
+    public class Employee : Entity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }    
         public int Age { get; set; }    
         public Occupation Occupation { get; set; }    
@@ -19,6 +18,8 @@ namespace SignUp.Domain.Entities
             Occupation = occupation;
             EntryDate = entryDate;
             Email = email;
+
+            Validate(this, new EmployeeValidator());
         }
     }
 }
