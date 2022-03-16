@@ -8,16 +8,18 @@ namespace SignUp.Domain.Entities
         public int Age { get; set; }    
         public Occupation Occupation { get; set; }    
         public DateTime? EntryDate { get; set; }
+        public string Email { get; set; }
 
-        public Employee(Guid id, string name, int age, Occupation occupation, DateTime? entryDate)
+        public Employee(Guid id, string name, int age, Occupation occupation, DateTime? entryDate, string email)
         {
             Id = id;
             Name = name;
             Age = age;
             Occupation = occupation;
             EntryDate = entryDate;
+            Email = email;
 
-            Validator(this, new EmployeeValidator());
+            Validate(this, new EmployeeValidator());
         }
     }
 }

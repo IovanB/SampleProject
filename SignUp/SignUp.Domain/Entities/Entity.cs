@@ -6,19 +6,18 @@ namespace SignUp.Domain.Entities
 {
     public class Entity
     {
-        public Guid Id { get; set; }    
+        public Guid Id { get; set; }
 
         [NotMapped]
-        public bool IsValid { get; private set; }
+        public bool IsValid { get; set; }
 
         [NotMapped]
-        public ValidationResult ValidationResult { get; private set; }
-        
-        public bool Validator<TModel>(TModel model, AbstractValidator<TModel> validator)
+        public ValidationResult ValidationResult { get; set; }
+
+        public bool Validate<T>(T model, AbstractValidator<T> validations)
         {
-            ValidationResult = validator.Validate(model);
-            return IsValid = ValidationResult.IsValid;
+            ValidationResult = validations.Validate(model);
+            return this.IsValid = ValidationResult.IsValid;
         }
-
     }
 }
